@@ -26,7 +26,7 @@
     <% end %>
   </div>
 
-  <div class="four columns">
+  <div class="alpha four columns">
     <%= f.field_container :mail_from_address do %>
       <%= f.label :mail_from_address, Spree.t(:send_mails_as) %><br />
       <%= f.text_field :mail_from_address, :class => 'fullwidth' %>
@@ -36,27 +36,71 @@
 
   <div class="four columns">
     <%= f.field_container :default_currency do %>
-      <%= f.label :default_currency, Spree.t(:default_currency) %>
+      <%= f.label :stock_location_id, Spree.t(:take_stock_from) %>
+      <%= f.collection_select(:stock_location_id, Spree::StockLocation.all, :id, :name ) %>
+      <%= error_message_on :store, :stock_location_id %>
+    <% end %>
+  </div>
+
+  <div class="two columns">
+    <%= f.field_container :default_currency do %>
+      <%= f.label :default_currency, Spree.t(:currency) %>
       <%= f.text_field :default_currency %>
     <% end %>
   </div>
 
-  <div class="six columns">
+  <div class="alpha six columns">
     <%= f.field_container :url do %>
       <%= f.label :url, Spree.t(:domains) %><br />
-      <%= f.text_area :url, :cols => 60, :rows => 4, :class => 'fullwidth' %>
+      <%= f.text_area :url, :cols => 60, :class => 'fullwidth' %>
       <%= error_message_on :store, :url %>
     <% end %>
   </div>
 
-  <div class="eight columns">
-    <%= image_tag @store.logo %>
-    <%= f.field_container :logo do %>
-      <%= f.label :logo, Spree.t(:logo) %><br />
-      <%= f.file_field :logo %>
-      <%= error_message_on :store, :logo %>
+  <div class="alpha six columns">
+    <%= f.field_container :cards_accepted do %>
+      <%= f.label :cards_accepted, Spree.t(:cards_accepted) %><br />
+      <%= f.text_area :cards_accepted, :cols => 60, :class => 'fullwidth' %>
+      <%= error_message_on :store, :cards_accepted %>
     <% end %>
   </div>
+
+  <div class="alpha three columns">
+    <%= f.field_container :delivery_carrier_default do %>
+      <%= f.label :delivery_carrier_default, Spree.t(:delivery_carrier) %>
+      <%= f.text_field :delivery_carrier_default %>
+    <% end %>
+  </div>
+
+  <div class="three columns">
+    <%= f.field_container :delivery_estimate_default do %>
+      <%= f.label :delivery_estimate_default, Spree.t(:delivery_estimate) %>
+      <%= f.text_field :delivery_estimate_default %>
+    <% end %>
+  </div>
+
+  <div class="three columns">
+    <%= f.field_container :delivery_free do %>
+      <%= f.label :delivery_free, Spree.t(:free_delivery) %>
+      <ul>
+        <li><%= f.radio_button :delivery_free, "true", :class => 'fullwidth' %> <%= Spree.t(:yes) %></li>
+        <li><%= f.radio_button :delivery_free, "false", :class => 'fullwidth' %> <%= Spree.t(:no) %></li>
+      </ul>
+      <%= error_message_on :store, :delivery_free %>
+    <% end %>
+  </div>
+
+  <div class="alpha three columns">
+    <%= f.field_container :returns_free do %>
+      <%= f.label :returns_free, Spree.t(:returns_free) %>
+      <ul>
+        <li><%= f.radio_button :returns_free, "true", :class => 'fullwidth' %> <%= Spree.t(:yes) %></li>
+        <li><%= f.radio_button :returns_free, "false", :class => 'fullwidth' %> <%= Spree.t(:no) %></li>
+      </ul>
+      <%= error_message_on :store, :returns_free %>
+    <% end %>
+  </div>
+
 
   <div class='row'>
     <div class="alpha six columns">
