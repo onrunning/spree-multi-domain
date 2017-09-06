@@ -124,7 +124,7 @@
           <label class="sub">
             <%= check_box_tag 'store[shipping_method_ids][]', shipping_method.id, @store.shipping_methods.include?(shipping_method) %>
           </label> &nbsp;
-          <%= shipping_method.name %>
+          <%= shipping_method.admin_name %>
           <br>
         <% end %>
         <%= hidden_field_tag 'store[shipping_method_ids][]', '' %>
